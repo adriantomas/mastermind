@@ -26,7 +26,7 @@ def handler(event, context) -> dict:
 
 
 def process_event(event: dict) -> dict:
-    secret = randrange(1000, 10000)
+    secret = str(randrange(1000, 10000))
     game_id = str(uuid4())
     _save_game(game_id, secret)
 
@@ -40,5 +40,6 @@ def _save_game(game_id: str, secret: str) -> None:
             "secret": secret,
             "tries_left": MAX_TRIES,
             "created_at": datetime.utcnow().isoformat(),
+            "is_solved": False,
         }
     )
