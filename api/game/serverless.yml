@@ -78,3 +78,14 @@ functions:
           path: game/{game_id}/movement/{movement}
           method: PUT
           cors: true
+
+  getGame:
+    handler: lambdas/get_game.handler
+    layers:
+      - ${self:custom.lambdaPowertoolsLayer}
+      - ${self:custom.boto3Layer}
+    events:
+      - http:
+          path: game/{game_id}
+          method: GET
+          cors: true
