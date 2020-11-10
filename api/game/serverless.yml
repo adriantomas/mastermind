@@ -67,3 +67,14 @@ functions:
           path: game
           method: POST
           cors: true
+
+  makeMovement:
+    handler: lambdas/make_movement.handler
+    layers:
+      - ${self:custom.lambdaPowertoolsLayer}
+      - ${self:custom.boto3Layer}
+    events:
+      - http:
+          path: game/{game_id}/movement/{movement}
+          method: PUT
+          cors: true
