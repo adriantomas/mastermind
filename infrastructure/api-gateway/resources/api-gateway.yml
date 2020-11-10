@@ -1,0 +1,18 @@
+Resources:
+    ApiGatewayRestApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: ${self:custom.stage}-api-gateway
+
+Outputs:
+  ApiGatewayRestApiId:
+    Value:
+      !Ref ApiGatewayRestApi
+    Export:
+      Name: ${self:custom.stage}-ApiGatewayRestApiId
+  
+  ApiGatewayRestApiRootResourceId:
+    Value:
+      !GetAtt ApiGatewayRestApi.RootResourceId
+    Export:
+      Name: ${self:custom.stage}-ApiGatewayRestApiRootResourceId
