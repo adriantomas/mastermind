@@ -39,17 +39,6 @@
 * [Contact](#contact)
 
 
-
-
-
-### Built With
-
-* [Python 3.8](https://www.python.org/)
-* [Serverless Framework](https://www.serverless.com/)
-* [AWS](https://aws.amazon.com/)
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -92,7 +81,7 @@ PUT /game/:game_id/movement/:movement
 
 ## Testing
 
-Despite not having implemented a large coverage of tests, there are some available.Run:
+Despite not having implemented a large coverage of tests, there are some available. Run:
 ```sh
 pytest
 ```
@@ -105,6 +94,13 @@ npm i
 serverless deploy
 ```
 After both infrastructure deployments, deploy the API in the same way.
+
+
+### Built With
+
+* [Python 3.8](https://www.python.org/)
+* [Serverless Framework](https://www.serverless.com/)
+* [AWS](https://aws.amazon.com/)
 
 <!-- CONTACT -->
 ## Contact
@@ -120,14 +116,14 @@ Project Link: [https://github.com/adriantomas/mastermind](https://github.com/adr
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/adriantomas/repo.svg?style=flat-square
-[contributors-url]: https://github.com/adriantomas/repo/graphs/contributors
+[contributors-url]: https://github.com/adriantomas/mastermind/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/adriantomas/repo.svg?style=flat-square
-[forks-url]: https://github.com/adriantomas/repo/network/members
+[forks-url]: https://github.com/adriantomas/mastermind/network/members
 [stars-shield]: https://img.shields.io/github/stars/adriantomas/repo.svg?style=flat-square
-[stars-url]: https://github.com/adriantomas/repo/stargazers
+[stars-url]: https://github.com/adriantomas/mastermind/stargazers
 [issues-shield]: https://img.shields.io/github/issues/adriantomas/repo.svg?style=flat-square
-[issues-url]: https://github.com/adriantomas/repo/issues
+[issues-url]: https://github.com/adriantomas/mastermind/issues
 [license-shield]: https://img.shields.io/github/license/adriantomas/repo.svg?style=flat-square
-[license-url]: https://github.com/adriantomas/repo/blob/master/LICENSE.txt
+[license-url]: https://github.com/adriantomas/mastermind/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/adriantomasvano
