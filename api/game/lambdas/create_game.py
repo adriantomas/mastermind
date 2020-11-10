@@ -1,4 +1,5 @@
 """
+Creates a game, saves it to DB and returns the id
 """
 import os
 from datetime import datetime
