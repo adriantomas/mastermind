@@ -1,0 +1,19 @@
+{
+  "name": "mastermind-infrastructure-api-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adriantomas/mastermind.git"
+  },
+  "author": "Adrián Tomás",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adriantomas/mastermind/issues"
+  },
+  "homepage": "https://github.com/adriantomas/mastermind#readme",
+  "devDependencies": {
+    "serverless": "^2.11.1"
+  }
+}

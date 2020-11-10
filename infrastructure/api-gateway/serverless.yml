@@ -1,0 +1,11 @@
+service: mastermind-game-api-gateway
+
+custom: ${file(../../serverless.common.yml):custom}
+
+provider:
+  name: aws
+  stage: dev
+  region: us-east-1
+
+resources:
+  - ${file(resources/api-gateway.yml)}

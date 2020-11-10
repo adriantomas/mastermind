@@ -1,0 +1,69 @@
+service: mastermind-game-api
+    
+custom: ${file(../../serverless.common.yml):custom}
+
+package: 
+  excludeDevDependencies: true
+  exclude:
+    - __init__.py
+    - tests/**
+    - requirements*.txt
+    - node_modules/**
+    - package.json
+    - .gitignore
+    - package-lock.json
+
+
+plugins:
+  - serverless-plugin-aws-alerts
+
+provider: 
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-east-1
+
+  logs:
+    restApi: 
+      level: ERROR
+
+  apiGateway:
+    metrics: true
+    restApiId: !ImportValue ${self:custom.stage}-ApiGatewayRestApiId
+    restApiRootResourceId: !ImportValue ${self:custom.stage}-ApiGatewayRestApiRootResourceId
+
+  memorySize: 640
+  timeout: 6
+  tracing:
+    apiGateway: ${self:custom.tracingStage}
+    lambda: ${self:custom.tracingStage}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "xray:PutTraceSegments"
+        - "xray:PutTelemetryRecords"
+      Resource:
+        - "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+      Resource:
+        - !ImportValue ${self:custom.resourcesStage}-DynamoDBTableArn
+
+  environment:
+    DYNAMODB_TABLE_NAME: !ImportValue ${self:custom.resourcesStage}-DynamoDBTableName
+
+functions:  
+  createGame:
+    handler: lambdas/create_game.handler
+    layers:
+      - ${self:custom.lambdaPowertoolsLayer}
+      - ${self:custom.boto3Layer}
+    events:
+      - http:
+          path: game
+          method: POST
+          cors: true
