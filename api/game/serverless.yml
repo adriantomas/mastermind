@@ -1,6 +1,6 @@
 service: mastermind-game-api
     
-custom: ${file(../../../serverless.common.yml):custom}
+custom: ${file(../../serverless.common.yml):custom}
 
 package: 
   excludeDevDependencies: true
