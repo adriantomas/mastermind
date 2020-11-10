@@ -67,6 +67,9 @@ def process_event(event: dict) -> dict:
 
 
 def _count_digits_in_correct_position(secret: str, movement: str) -> int:
+    """
+    Counts the amount of digits in the same position as the secret
+    """
     counter = 0
     for i, letter in enumerate(secret):
         if movement[i] == letter:
@@ -75,6 +78,9 @@ def _count_digits_in_correct_position(secret: str, movement: str) -> int:
 
 
 def _count_digits_present_in_secret(secret: str, movement: str) -> int:
+    """
+    Counts the amount of unique digits presents in the secret
+    """
     counter = 0
     movement_unique_digits = set(movement)  # Remove duplicates
     for i in movement_unique_digits:
