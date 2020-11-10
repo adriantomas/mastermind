@@ -1,35 +1,6 @@
 service: mastermind-game-api
     
-custom: 
-  boto3Layer: arn:aws:lambda:us-east-1:770693421928:layer:Klayers-python38-boto3:48
-  lambdaPowertoolsLayer: arn:aws:lambda:us-east-1:770693421928:layer:Klayers-python38-aws-lambda-powertools:48
-  stage: ${opt:stage, self:provider.stage, dev}
-  region: ${opt:region, self:provider.region, us-east-1}
-  tracingStages:
-    prod: true
-    staging: true
-    dev: false
-  tracingStage: ${self:custom.tracingStages.${self:custom.stage}, self:custom.tracingStages.dev}
-  resourcesStages:
-    prod: prod
-    staging: prod
-    dev: dev
-  resourcesStage: ${self:custom.resourcesStages.${self:custom.stage}, self:custom.resourcesStages.dev}
-  alerts:
-    stages:
-      - prod
-      - staging
-    alarms:
-      - functionErrors
-      - functionThrottles
-      - functionInvocations
-      - functionDuration
-    topics:
-      alarm:
-        topic: ${self:service}-${opt:stage, self:provider.stage}-alerts-alarm
-        notifications:
-          - protocol: https
-            endpoint: https://global.sns-api.chatbot.amazonaws.com
+custom: ${file(../../../serverless.common.yml):custom}
 
 package: 
   excludeDevDependencies: true
