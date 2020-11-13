@@ -5,7 +5,6 @@ custom: ${file(../../serverless.common.yml):custom}
 package: 
   excludeDevDependencies: true
   exclude:
-    - __init__.py
     - tests/**
     - requirements*.txt
     - node_modules/**
@@ -47,6 +46,7 @@ provider:
         - "*"
     - Effect: Allow
       Action:
+        - dynamodb:DescribeTable
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
