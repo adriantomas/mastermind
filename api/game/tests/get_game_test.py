@@ -1,12 +1,9 @@
 import os
 from contextlib import contextmanager
-from json import loads
 
 from botocore.exceptions import ClientError
 
-DYNAMODB_TABLE_NAME = "DB_TEST"
-os.environ["DYNAMODB_TABLE_NAME"] = DYNAMODB_TABLE_NAME
-os.environ["POWERTOOLS_TRACE_DISABLED"] = "true"
+DYNAMODB_TABLE_NAME = os.getenv("DYNAMODB_TABLE_NAME")
 
 
 @contextmanager
@@ -36,18 +33,21 @@ class TestCreateGame:
                 assert err.response["Error"]["Code"] == "ResourceNotFoundException"
 
     def test_get_non_existent_game(self):
-        from ..lambdas.get_game import process_event
+        from ..lambdas.get_game import GetGameClass
 
-        response = process_event({"pathParameters": {"game_id": "TEST"}})
-        assert response.get("statusCode") == 404
+        status_code, response_body = GetGameClass().process_event(
+            {"pathParameters": {"game_id": "TEST"}}
+        )
+        assert status_code == 404
 
     def test_get_existent_game(self):
-        from ..lambdas.create_game import process_event as create_game
-        from ..lambdas.get_game import process_event as get_game
+        from ..lambdas.create_game import CreateGameClass
+        from ..lambdas.get_game import GetGameClass
 
-        response = create_game({})
-        body = loads(response.get("body"))
-        game_id = body.get("game_id")
+        create_status_code, create_body = CreateGameClass().process_event({})
+        game_id = create_body.get("game").get("game_id")
 
-        response = get_game({"pathParameters": {"game_id": game_id}})
-        assert response.get("statusCode") == 200
+        get_status_code, get_body = GetGameClass().process_event(
+            {"pathParameters": {"game_id": game_id}}
+        )
+        assert get_status_code == 200 and create_body == get_body
