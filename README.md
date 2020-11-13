@@ -74,9 +74,9 @@ Get game info specified by `game_id`:
 GET /game/:game_id
 ```
 
-Make an attempt to find out the secret, where `game_id` is the ID of the game and `movement` is a 4 number combination:
+Make an attempt to find out the secret, where `game_id` is the ID of the game and `guess` is a combination of four letters among (`RBYGWO`):
 ```
-PUT /game/:game_id/movement/:movement
+PUT /game/:game_id/guess/:guess
 ```
 
 ## Testing
@@ -96,7 +96,7 @@ serverless deploy
 After both infrastructure deployments, deploy the API in the same way.
 
 
-### Built With
+## Built With
 
 * [Python 3.8](https://www.python.org/)
 * [Serverless Framework](https://www.serverless.com/)
