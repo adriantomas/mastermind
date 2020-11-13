@@ -1,0 +1,13 @@
+service: mastermind-game-lambda-layers
+
+custom: ${file(../../serverless.common.yml):custom}
+
+provider:
+  name: aws
+
+layers:
+  pythonDependencies:
+    path: layers/dependencies/content
+    name: ${self:custom.resourcesStage}-python-dependencies
+    compatibleRuntimes: 
+      - python3.8
