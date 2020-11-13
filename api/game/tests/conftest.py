@@ -4,6 +4,10 @@ import boto3
 import pytest
 from moto import mock_dynamodb2
 
+DYNAMODB_TABLE_NAME = "DB_TEST"
+os.environ["DYNAMODB_TABLE_NAME"] = DYNAMODB_TABLE_NAME
+os.environ["POWERTOOLS_TRACE_DISABLED"] = "true"
+
 
 @pytest.fixture(scope="module")
 def aws_credentials():
