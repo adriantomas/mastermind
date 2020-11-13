@@ -1,12 +1,9 @@
 import os
 from contextlib import contextmanager
-from json import loads
 
 from botocore.exceptions import ClientError
 
-DYNAMODB_TABLE_NAME = "DB_TEST"
-os.environ["DYNAMODB_TABLE_NAME"] = DYNAMODB_TABLE_NAME
-os.environ["POWERTOOLS_TRACE_DISABLED"] = "true"
+DYNAMODB_TABLE_NAME = os.getenv("DYNAMODB_TABLE_NAME")
 
 
 @contextmanager
@@ -36,8 +33,7 @@ class TestCreateGame:
                 assert err.response["Error"]["Code"] == "ResourceNotFoundException"
 
     def test_game_creation(self):
-        from ..lambdas.create_game import process_event
+        from ..lambdas.create_game import CreateGameClass
 
-        response = process_event({})
-        body = loads(response.get("body"))
-        assert "game_id" in body
+        status_code, response_body = CreateGameClass().process_event({})
+        assert status_code == 200
