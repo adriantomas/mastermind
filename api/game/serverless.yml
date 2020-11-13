@@ -60,30 +60,27 @@ functions:
   createGame:
     handler: lambdas/create_game.handler
     layers:
-      - ${self:custom.lambdaPowertoolsLayer}
-      - ${self:custom.boto3Layer}
+      - ${self:custom.dependenciesLayer}
     events:
       - http:
           path: game
           method: POST
           cors: true
 
-  makeMovement:
-    handler: lambdas/make_movement.handler
+  makeGuess:
+    handler: lambdas/make_guess.handler
     layers:
-      - ${self:custom.lambdaPowertoolsLayer}
-      - ${self:custom.boto3Layer}
+      - ${self:custom.dependenciesLayer}
     events:
       - http:
-          path: game/{game_id}/movement/{movement}
-          method: PUT
+          path: game/{game_id}/guess/{guess}
+          method: POST
           cors: true
 
   getGame:
     handler: lambdas/get_game.handler
     layers:
-      - ${self:custom.lambdaPowertoolsLayer}
-      - ${self:custom.boto3Layer}
+      - ${self:custom.dependenciesLayer}
     events:
       - http:
           path: game/{game_id}
